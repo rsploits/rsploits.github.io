@@ -488,6 +488,7 @@ h1, h2 {
 
 #issuetitle {
     margin-bottom: 8px;
+    text-align: center;
 } 
 
 .openongithubbutton {
