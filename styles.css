@@ -47,6 +47,7 @@ body {
     height: min-content;
     transition: 0.5s;
     min-height: 300px;
+    zoom: 80%;
 }
 
 .container .bypass {
@@ -104,12 +105,12 @@ body {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    -webkit-filter: blur(8px) brightness(30%);
-    filter: blur(8px) brightness(30%);
+    -webkit-filter: blur(8px) brightness(30%) saturate(30%);
+    filter: blur(8px) brightness(30%) saturate(30%);
 }
 
 
-.container .card .content .text button {
+.container .card .content .text button, .excard button {
     margin-top: 10px;
     width: 385px;
     height: 30px;
@@ -222,7 +223,8 @@ hr {
     text-align: center;
     background-color: #ffffff30;
     margin-right: 2px;
-    padding: 12.5px 20px;
+    height: 100%;
+    padding: 3px 20px;
     color: #e0e0e0;
 }
 
@@ -282,13 +284,18 @@ hr {
     background-color: #5ffa5f80;
 }
 
-*::-webkit-scrollbar {
-    display: none;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-* {
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+::-webkit-scrollbar-track {
+    background: #444444; 
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888888; 
+    border-radius: 3px;
 }
 
 .small {
@@ -365,8 +372,8 @@ hr {
     height: calc(100% + 40px);
     position: absolute;
     z-index: -1;
-    -webkit-filter: blur(12px) brightness(30%);
-    filter: blur(12px) brightness(30%);
+    -webkit-filter: blur(12px) brightness(30%) saturate(30%);
+    filter: blur(12px) brightness(30%) saturate(30%);
     margin: -20px -20px -20px -20px;
 }
 
@@ -510,7 +517,7 @@ h1, h2 {
 .popuptext {
     display: flex;
     width: 120px;
-    background-color: #555555;
+    background-color: #555555d0;
     color: #ffffff;
     text-align: center;
     position: relative;
@@ -547,4 +554,156 @@ h1, h2 {
 
 #credits .container hr {
     width: 500px;
+}
+
+.excard {
+    position: relative;
+    width: 800px;
+    margin: 20px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(11px) brightness(50%);
+    backdrop-filter: blur(11px) brightness(50%);
+    height: min-content;
+    transition: 0.5s;
+    height: 330px;
+    zoom: 80%;
+}
+
+.excard:hover {
+    transform: translateX(4px) rotate3d(0, 0, 1, 0.15deg);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.excard .content {
+    padding: 20px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.exname {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 350px;
+    height: 60px;
+    text-align: center;
+}
+
+.exprocon {
+    position: absolute;
+    left: 20px;
+    top: 90px;
+    width: 350px;
+    height: 218px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+}
+
+.exmeta {
+    position: absolute;
+    bottom: 200px;
+    right: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exdata {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+}
+
+.exdatalabel {
+    color: #ffffff;
+    text-align: left;
+    width: 200px;
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+
+.exdatavalue {
+    color: #ffffff;
+    text-align: right;
+    width: 200px;
+    position: relative;
+    right: 10px;
+    top: 10px;
+}
+
+#credits .container hr {
+    width: 350px;
+}
+
+#credits .container h1 {
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.explatforms {
+    position: absolute;
+    right: 20px;
+    bottom: 111px;
+    width: 350px;
+}
+
+.explatformsiconcontainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+}
+
+.exfeatures {
+    width: 350px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 65px;
+    right: 20px;
+}
+
+.exfeatures hr {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 1px;
+    height: 30px;
+}
+
+.excard button {
+    width: 350px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media screen and (max-width: 700px) {
+
+    .excard {
+        width: 400px;
+        height: 650px;
+    }
+
+}
+
+a {
+    cursor: pointer;
+    color: #bbd5ff;
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgba(183, 211, 255, 0.9);
 }

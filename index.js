@@ -1,5 +1,8 @@
 
 var EXPLOIT_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/exploits.json";
+var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/viruses-rats-fakes.json";
+var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
+var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/rsploits/rsploits.github.io/issues";
 
 var el = x => document.getElementById(x);
@@ -66,6 +69,7 @@ function toggleFilter(name, button) {
 }
 
 function toggleNav() {
+    document.cookie = "hidepopup=true";
     el("hamburgerpopup").style.display = "none";
     var sidebar = el("sidebar");
     var overlay = el("overlay");
@@ -93,70 +97,101 @@ function createCard(data) {
     var pros = data.pros;
     var neutrals = data.neutrals;
     var cons = data.cons;
-    var additionalText = data.additionalText;
+    var unc = data.unc;
+    var level = data.level;
+    var decompiler = data.features?.decompiler;
+    var keyless = data.features?.keyless;
+    var free = data.features?.free;
     var buttonName = data.buttonName;
     var buttonUrl = data.buttonUrl;
-
-    var card = document.createElement("div");
-    el("exploitcontainer").appendChild(card);
-    card.classList.add("card");
-    for (platform of platforms) {
-        card.classList.add("ex_" + platform.slice(0, 3));
-    }
-
-    var content = document.createElement("div");
-    card.appendChild(content);
-    content.className = "content";
-
-    var h3 = document.createElement("h3");
-    content.appendChild(h3);
-    h3.innerHTML = title;
-
-    var iconContainer = document.createElement("div");
-    content.appendChild(iconContainer);
-    iconContainer.className = "icon-container";
-    for (platform of platforms) {
-        var icon = document.createElement("div");
-        iconContainer.appendChild(icon);
-        icon.classList.add("icon", platform);
-    }
-
-    content.appendChild(document.createElement("hr"));
-
-    var text = document.createElement("div");
-    content.appendChild(text);
-    text.classList.add("text");
-
-    for (pro of pros) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("g");
-        p.innerHTML = "- " + pro;
-    }
-
-    for (neutral of neutrals) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("n");
-        p.innerHTML = "- " + neutral;
-    }
-
-    for (con of cons) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("b");
-        p.innerHTML = "- " + con;
-    }
     
-    if (additionalText && additionalText.length > 0) {
-        text.appendChild(document.createElement("br"));
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.innerHTML = additionalText;
-    }
+    var cardDiv = document.createElement("div");
+    document.getElementById("exploitcontainer").appendChild(cardDiv);
+    cardDiv.className = "excard";
+    platforms.forEach(p => cardDiv.classList.add("ex_" + p.substring(0, 3)));
+
+    var cardContent = document.createElement("div");
+    cardDiv.appendChild(cardContent);
+    cardContent.className = "content";
+
+    var cardTitle = document.createElement("h1");
+    cardContent.appendChild(cardTitle);
+    cardTitle.className = "exname";
+    cardTitle.innerHTML = title;
+    cardTitle.appendChild(document.createElement("hr"));
+
+    var proConDiv = document.createElement("div");
+    cardContent.appendChild(proConDiv);
+    proConDiv.className = "exprocon";
+
+    [["g", pros], ["n", neutrals], ["b", cons]].forEach(c => {
+        c[1].forEach(t => {
+            var p = document.createElement("p");
+            p.innerHTML = "- " + t;
+            proConDiv.appendChild(p);
+            p.className = c[0];
+        });
+    });
+
+    var metaDiv = document.createElement("div");
+    cardContent.appendChild(metaDiv);
+    metaDiv.className = "exmeta";
+
+    [["UNC", unc], ["Level", level]].forEach(d => {
+        var dataDiv = document.createElement("div");
+        metaDiv.appendChild(dataDiv);
+        metaDiv.appendChild(document.createElement("hr"));
+        dataDiv.className = "exdata";
+        var label = document.createElement("p");
+        dataDiv.appendChild(label);
+        label.className = "exdatalabel";
+        label.innerHTML = d[0];
+        var value = document.createElement("p");
+        dataDiv.appendChild(value);
+        value.className = "exdatavalue";
+        value.innerHTML = d[1];
+    });
+
+    var platformsDiv = document.createElement("div");
+    cardContent.appendChild(platformsDiv);
+    platformsDiv.className = "explatforms";
+
+    var platformIconContainer = document.createElement("div");
+    platformsDiv.appendChild(platformIconContainer);
+    platformsDiv.appendChild(document.createElement("hr"));
+    platformIconContainer.className = "explatformsiconcontainer";
+
+    platforms.forEach(p => {
+        var icon = document.createElement("div");
+        platformIconContainer.appendChild(icon);
+        icon.className = "icon " + p;
+    });
+
+    var featuresDiv = document.createElement("div");
+    cardContent.appendChild(featuresDiv);
+    featuresDiv.className = "exfeatures";
+
+    var decompilerP = document.createElement("p");
+    featuresDiv.appendChild(decompilerP);
+    decompilerP.className = decompiler ? "g" : "b";
+    decompilerP.innerHTML = "Decompiler";
+
+    featuresDiv.appendChild(document.createElement("hr"));
+
+    var freeP = document.createElement("p");
+    featuresDiv.appendChild(freeP);
+    freeP.className = free ? "g" : "b";
+    freeP.innerHTML = "Free";
+
+    featuresDiv.appendChild(document.createElement("hr"));
+
+    var keylessP = document.createElement("p");
+    featuresDiv.appendChild(keylessP);
+    keylessP.className = keyless ? "g" : "b";
+    keylessP.innerHTML = "Keyless";
 
     var button = document.createElement("button");
-    text.appendChild(button);
+    cardContent.appendChild(button);
     button.innerHTML = buttonName;
     button.onclick = () => window.open(buttonUrl);
 
@@ -169,118 +204,6 @@ function createAllCardsFromJson(data) {
     }
 }
 
-function createEditableCard(data) {
-
-    var title = data.title;
-    var platforms = data.platforms;
-    var pros = data.pros;
-    var neutrals = data.neutrals;
-    var cons = data.cons;
-    var additionalText = data.additionalText;
-    var buttonName = data.buttonName;
-    var buttonUrl = data.buttonUrl;
-
-    var card = document.createElement("div");
-    el("editorCardContainer").appendChild(card);
-    card.classList.add("card");
-    for (platform of platforms) {
-        card.classList.add("ex_" + platform.slice(0, 3));
-    }
-
-    var content = document.createElement("div");
-    card.appendChild(content);
-    content.className = "content";
-
-    var h3 = document.createElement("h3");
-    content.appendChild(h3);
-    h3.innerHTML = title;
-
-    var span = document.createElement("span"); 
-    content.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit name";
-
-    var iconContainer = document.createElement("div");
-    content.appendChild(iconContainer);
-    iconContainer.className = "icon-container";
-    for (platform of platforms) {
-        var icon = document.createElement("div");
-        iconContainer.appendChild(icon);
-        icon.classList.add("icon", platform);
-    }
-
-    span = document.createElement("span"); 
-    content.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit platforms";
-
-    content.appendChild(document.createElement("hr"));
-
-    var text = document.createElement("div");
-    content.appendChild(text);
-    text.classList.add("text");
-
-    for (pro of pros) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("g");
-        p.innerHTML = "- " + pro;
-    }
-
-    span = document.createElement("span"); 
-    text.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit pros";
-
-    for (neutral of neutrals) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("n");
-        p.innerHTML = "- " + neutral;
-    }
-
-    span = document.createElement("span"); 
-    text.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit neutrals";
-
-    for (con of cons) {
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.classList.add("b");
-        p.innerHTML = "- " + con;
-    }
-
-    span = document.createElement("span"); 
-    text.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit cons";
-    
-    if (additionalText && additionalText.length > 0) {
-        text.appendChild(document.createElement("br"));
-        var p = document.createElement("p");
-        text.appendChild(p);
-        p.innerHTML = additionalText;
-    }
-
-    var button = document.createElement("button");
-    text.appendChild(button);
-    button.innerHTML = buttonName;
-    button.onclick = () => window.open(buttonUrl);
-    
-    span = document.createElement("span"); 
-    text.appendChild(span);
-    span.className = "editbutton";
-    span.innerHTML = "edit button";
-
-}
-
-function createAllEditableCardsFromJson(data) {
-    var json = JSON.parse(data);
-    for (card of json) {
-        createEditableCard(card);
-    }
-}
 
 function autoImportEditableCards() {
     fetch(EXPLOIT_DATA_URL).then(data => data.text()).then(createAllEditableCardsFromJson);
@@ -341,5 +264,145 @@ function createAllIssueCardsFromJson(data) {
     }
 }
 
-fetch(EXPLOIT_DATA_URL).then(data => data.text()).then(createAllCardsFromJson);
-fetch(ISSUE_DATA_URL).then(data => data.text()).then(createAllIssueCardsFromJson);
+
+function createMalwareCard(data) {
+    var title = data.title;
+    var description = data.description;
+    var proofs = data.proofs;
+
+    var cardDiv = document.createElement("div");
+    document.getElementById("viruses").appendChild(cardDiv);
+    cardDiv.className = "card virus";
+
+    var cardContent = document.createElement("div");
+    cardDiv.appendChild(cardContent);
+    cardContent.className = "content";
+
+    var name = document.createElement("h1");
+    cardContent.appendChild(name);
+    name.innerHTML = title;
+
+    cardContent.appendChild(document.createElement("hr"));
+
+    var textDiv = document.createElement("div");
+    cardContent.appendChild(textDiv);
+    textDiv.className = "text";
+
+    var descriptionP = document.createElement("p");
+    textDiv.appendChild(descriptionP);
+    descriptionP.innerHTML = description;
+
+    proofs.forEach(p => {
+        var proofA = document.createElement("a");
+        textDiv.appendChild(proofA);
+        proofA.href = p;
+        proofA.target = "_blank";
+        proofA.rel = "noopener";
+        proofA.innerHTML = "More...<br>";
+    });
+
+}
+
+function createAllMalwareCardsFromJson(data) {
+    var json = JSON.parse(data);
+    for (malware of json) {
+        createMalwareCard(malware);
+    }
+}
+
+function createBypasserCard(data) {
+    var title = data.title;
+    var description = data.description;
+    var buttons = data.buttons;
+
+    var cardDiv = document.createElement("div");
+    document.getElementById("bypassers").appendChild(cardDiv);
+    cardDiv.className = "card bypass";
+
+    var cardContent = document.createElement("div");
+    cardDiv.appendChild(cardContent);
+    cardContent.className = "content";
+
+    var name = document.createElement("h1");
+    cardContent.appendChild(name);
+    cardContent.appendChild(document.createElement("hr"));
+    name.innerHTML = title;
+
+    var textDiv = document.createElement("div");
+    cardContent.appendChild(textDiv);
+    textDiv.className = "text";
+
+    description.forEach(d => {
+        var descriptionP = document.createElement("p");
+        textDiv.appendChild(descriptionP);
+        descriptionP.innerHTML = d;
+    });
+
+    buttons.forEach(b => {
+        var button = document.createElement("button");
+        textDiv.appendChild(button);
+        button.innerHTML = b.name;
+        button.onclick = () => window.open(b.url);
+    });
+}
+
+function createAllBypasserCardsFromJson(data) {
+    var json = JSON.parse(data);
+    for (bypasser of json) {
+        createBypasserCard(bypasser);
+    }
+}
+
+
+function createAdblockerCard(data) {
+    var title = data.title;
+    var description = data.description;
+    var buttons = data.buttons;
+
+    var cardDiv = document.createElement("div");
+    document.getElementById("adblockers").appendChild(cardDiv);
+    cardDiv.className = "card adblocker";
+
+    var cardContent = document.createElement("div");
+    cardDiv.appendChild(cardContent);
+    cardContent.className = "content";
+
+    var name = document.createElement("h1");
+    cardContent.appendChild(name);
+    cardContent.appendChild(document.createElement("hr"));
+    name.innerHTML = title;
+
+    var textDiv = document.createElement("div");
+    cardContent.appendChild(textDiv);
+    textDiv.className = "text";
+
+    description.forEach(d => {
+        var descriptionP = document.createElement("p");
+        textDiv.appendChild(descriptionP);
+        descriptionP.innerHTML = d;
+    });
+
+    buttons.forEach(b => {
+        var button = document.createElement("button");
+        textDiv.appendChild(button);
+        button.innerHTML = b.name;
+        button.onclick = () => window.open(b.url);
+    });
+}
+
+function createAllAdblockerCardsFromJson(data) {
+    var json = JSON.parse(data);
+    for (adblocker of json) {
+        createAdblockerCard(adblocker);
+    }
+}
+
+[
+    [EXPLOIT_DATA_URL, createAllCardsFromJson],
+    [MALWARE_DATA_URL, createAllMalwareCardsFromJson],
+    [BYPASSERS_DATA_URL, createAllBypasserCardsFromJson],
+    [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
+    [ISSUE_DATA_URL, createAllIssueCardsFromJson]
+].forEach(i => {
+    fetch(i[0]).then(d => d.text()).then(i[1]);
+});
