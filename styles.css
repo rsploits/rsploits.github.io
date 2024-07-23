@@ -711,12 +711,15 @@ h1, h2 {
         width: calc(50%);
     }
 
+}
+
+@media screen and (max-width: 600px) {
+    
     .excard p {
         font-size: smaller;
     }
 
 }
-
 
 
 a {
