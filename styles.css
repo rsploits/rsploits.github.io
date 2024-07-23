@@ -42,8 +42,8 @@ body {
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(11px) brightness(50%);
-    backdrop-filter: blur(11px) brightness(50%);
+    -webkit-backdrop-filter: brightness(50%);
+    backdrop-filter: brightness(50%);
     height: min-content;
     transition: 0.5s;
     min-height: 300px;
@@ -144,10 +144,7 @@ hr {
     margin-top: 8px;
     margin-bottom: 5px;
     border-radius: 50%;
-    opacity: 50%;
-    border-color: #ffffffb0;
-    -webkit-filter: blur(1px);
-    filter: blur(1px);
+    border-color: #ffffff36;
 }
 
 .icon-container {
@@ -234,6 +231,7 @@ hr {
 
 .active {
     color: #e0e0e0;
+    -webkit-backdrop-filter: brightness(60%);
     backdrop-filter: brightness(60%);
 }
 
@@ -253,7 +251,8 @@ hr {
     width: 50px;
     height: 50px;
     background-color: #00000000;
-    backdrop-filter: blur(5px) brightness(80%);
+    -webkit-backdrop-filter: brightness(80%);
+    backdrop-filter: brightness(80%);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -428,8 +427,8 @@ h1, h2 {
     border-radius: 5px;
     border-style: solid;
     background-color: #00000000;
-    -webkit-backdrop-filter: blur(8px) brightness(90%);
-    backdrop-filter: blur(8px) brightness(90%);
+    -webkit-backdrop-filter: brightness(90%);
+    backdrop-filter: brightness(90%);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -479,8 +478,8 @@ h1, h2 {
     border-radius: 5px;
     border-style: solid;
     background-color: #00000000;
-    -webkit-backdrop-filter: blur(8px) brightness(90%);
-    backdrop-filter: blur(8px) brightness(90%);
+    -webkit-backdrop-filter: brightness(90%);
+    backdrop-filter: brightness(90%);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -571,8 +570,8 @@ h1, h2 {
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(11px) brightness(50%);
-    backdrop-filter: blur(11px) brightness(50%);
+    -webkit-backdrop-filter: brightness(50%);
+    backdrop-filter: brightness(50%);
     height: min-content;
     transition: 0.5s;
     height: 330px;
