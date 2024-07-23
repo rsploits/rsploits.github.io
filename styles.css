@@ -695,11 +695,29 @@ h1, h2 {
 @media screen and (max-width: 700px) {
 
     .excard {
-        width: 400px;
+        width: 100vw;
         height: 650px;
     }
 
+    .exmeta, .explatforms, .exfeatures, .excard button { 
+        left: 20px; 
+    }
+
+    .exname, .exprocon, .exmeta, .explatforms, .exfeatures, .excard button {
+        width: calc(100% - 40px);
+    }
+
+    .exdatalabel, .exdatavalue {
+        width: calc(50%);
+    }
+
+    .excard p {
+        font-size: smaller;
+    }
+
 }
+
+
 
 a {
     cursor: pointer;
