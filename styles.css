@@ -366,8 +366,7 @@ hr {
 }
 
 #sidebar img {
-    height: calc(100% + 40px);
-    width: height;
+    height: max(calc(100% + 40px), 1000px);
     position: absolute;
     z-index: -1;
     margin: -20px -20px -20px -20px;
