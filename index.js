@@ -205,6 +205,18 @@ function createAllCardsFromJson(data) {
 }
 
 
+function createEditableCard() {
+
+}
+
+function createAllEditableCardsFromJson(data) {
+    // CLEAR ALL EXISTING EDITABLE CARDS
+    var json = JSON.parse(data);
+    for (card of json) {
+        createEditableCard(card);
+    }
+}
+
 function autoImportEditableCards() {
     fetch(EXPLOIT_DATA_URL).then(data => data.text()).then(createAllEditableCardsFromJson);
 }
