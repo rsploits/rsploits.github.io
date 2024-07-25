@@ -38,6 +38,7 @@ function toggleFilterMenu() {
 var activeFilters = [];
 
 function toggleFilter(name, button) {
+
     if (button.className.includes(" active")) {
         button.className = button.className.replace(" active", "");
     } else {
@@ -48,24 +49,62 @@ function toggleFilter(name, button) {
     } else {
         activeFilters.push(name);
     }
-    var allCards = Array.from(document.querySelector("#exploits .container").children);
-    for (card of allCards) {
-        if (activeFilters.length == 0) {
-            card.style.display = "flex";
-            continue;
+
+    var allCards = Array.from(document.getElementsByClassName("excard"));
+
+    var activePlatformFilters = [];
+    var activeFeatureFilters = [];
+
+    activeFilters.forEach(f => {
+        if (["ex_keyless", "ex_free", "ex_decomp"].includes(f)) {
+            activeFeatureFilters.push(f);
+        } else {
+            activePlatformFilters.push(f);
         }
+    });
+
+    allCards.forEach(c => c.style.display = "none");
+
+    var remainingCards = [];
+    allCards.forEach(c => {
+
         var visible = false;
-        for (filter of activeFilters) {
-            if (card.className.includes(filter)) {
-                card.style.display = "flex";
-                visible = true;
-                break;
+        if (activePlatformFilters.length == 0) {
+            visible = true;
+        } else {
+            activePlatformFilters.forEach(f => {
+                if (c.className.includes(f)) {
+                    visible = true;
+                }
+            });
+        }
+        
+        if (visible) {
+            c.style.display = "flex";
+            remainingCards.push(c);
+        } else {
+            c.style.display = "none";
+        }
+
+    });
+    allCards = remainingCards;
+
+    allCards.forEach(c => {
+        var visible = true;
+        activeFeatureFilters.forEach(f => {
+            if (!c.className.includes(f)) {
+                visible = false;
             }
+        });
+
+        if (visible) {
+            c.style.display = "flex";
+        } else {
+            c.style.display = "none";
         }
-        if (!visible) {
-            card.style.display = "none";
-        }
-    }
+
+    });
+
 }
 
 function toggleNav() {
@@ -109,6 +148,9 @@ function createCard(data) {
     document.getElementById("exploitcontainer").appendChild(cardDiv);
     cardDiv.className = "excard";
     platforms.forEach(p => cardDiv.classList.add("ex_" + p.substring(0, 3)));
+
+    //TODO remove later
+    if (title == "Celery v2") { cardDiv.classList.add("ex_keyless", "ex_free"); }
 
     var cardContent = document.createElement("div");
     cardDiv.appendChild(cardContent);

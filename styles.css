@@ -374,6 +374,7 @@ hr {
 
 #sidebar a {
     color: #d0d0d0;
+    text-shadow: 0px 0px 10px rgba(183, 211, 255, 0.4);
     font-size: larger;
     padding: 10px;
 }
@@ -722,4 +723,14 @@ a {
     color: #bbd5ff;
     text-decoration: none;
     text-shadow: 0px 0px 10px rgba(183, 211, 255, 0.9);
+}
+
+.filterico.hastext {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    width: min-content;
+    padding: 16px;
 }
