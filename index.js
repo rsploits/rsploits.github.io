@@ -302,7 +302,11 @@ function createIssueCard(data) {
     titleH2.appendChild(span);
     span.className = "openongithubbutton";
     span.innerHTML = "Open on github";
-    span.onclick = () => window.open(url);
+    span.onmousedown = e => {
+        if ([0, 1].includes(e.button)) {
+            window.open(url);
+        }
+    };
 
     content.appendChild(document.createElement("hr"));
 
@@ -401,7 +405,11 @@ function createBypasserCard(data) {
         var button = document.createElement("button");
         textDiv.appendChild(button);
         button.innerHTML = b.name;
-        button.onclick = () => window.open(b.url);
+        button.onmousedown = e => {
+            if ([0, 1].includes(e.button)) {
+                window.open(b.url);
+            }
+        };
     });
 }
 
@@ -445,7 +453,11 @@ function createAdblockerCard(data) {
         var button = document.createElement("button");
         textDiv.appendChild(button);
         button.innerHTML = b.name;
-        button.onclick = () => window.open(b.url);
+        button.onmousedown = e => {
+            if ([0, 1].includes(e.button)) {
+                window.open(b.url);
+            }
+        };
     });
 }
 
