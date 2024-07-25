@@ -236,7 +236,11 @@ function createCard(data) {
     var button = document.createElement("button");
     cardContent.appendChild(button);
     button.innerHTML = buttonName;
-    button.onclick = () => window.open(buttonUrl);
+    button.onmousedown = e => {
+        if ([0, 1].includes(e.button)) {
+            window.open(buttonUrl);
+        }
+    };
 
 }
 
