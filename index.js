@@ -149,8 +149,9 @@ function createCard(data) {
     cardDiv.className = "excard";
     platforms.forEach(p => cardDiv.classList.add("ex_" + p.substring(0, 3)));
 
-    //TODO remove later
-    if (title == "Celery v2") { cardDiv.classList.add("ex_keyless", "ex_free"); }
+    if (keyless) { cardDiv.classList.add("ex_keyless"); }
+    if (free) { cardDiv.classList.add("ex_free"); }
+    if (decompiler) { cardDiv.classList.add("ex_decomp"); }
 
     var cardContent = document.createElement("div");
     cardDiv.appendChild(cardContent);
