@@ -47,23 +47,41 @@
             </div>
             <div class="container" id="exploitcontainer"></div>
         </div>
-        <!-- TODO
+        
         <div id="editor" class="container" style="display: none;">
             <h1>Data Editor and Card Creator </h1>
-            <div class="dataimportbuttoncontainer">
-                <button onclick="autoImportEditableCards();">Import automatically</button>
-                <button>Import from json data</button> 
+            <div class="editorButtonContainer">
+                <button class="editorButton" onclick="autoImportEditableCards();">Import automatically</button>
+                <button class="editorButton" onclick="importEditorCardsFromJson();">Import from json data</button> 
+                <button class="editorButton" onclick="addNewEditableCard();">Add card</button>
+                <button class="editorButton" onclick="exportEditorCardsToJson();">Export</button>
+            </div>
+            <div class="importExportContainer" id="exportContainer" style="display: none;">
+                <h3>Q: How do I export this to rsploits?</h3>
+                <p>A: If you are a moderator of r/ROBLOXExploiting, you should have access to the exploit-data github repository, where you can copy and paste the json data into the exploits.json file. If you don't have access yet, message u/david30121 on reddit or @justacoder on discord.</p>
+                <textarea readonly id="exportTextArea">if you are seeing this, something probably went wrong.</textarea>
+                <div class="editorButtonContainer">
+                    <button class="editorButton" onclick="navigator.clipboard.writeText(el('exportTextArea').value);">Copy to clipboard</button>
+                    <button class="editorButton" onclick="window.open('https://github.com/davidsaltacc/exploits-data/edit/main/exploits.json')">Open exploits.json as editable</button>
+                    <button class="editorButton" onclick="el('exportContainer').style.display = 'none';">Close</button>
+                </div>
+            </div>
+            <div class="importExportContainer" id="importContainer" style="display: none;">
+                <textarea placeholder="Paste json here..." id="importTextArea"></textarea>
+                <div class="editorButtonContainer">
+                    <button class="editorButton" onclick="createAllEditableCardsFromJson(el('importTextArea').value)">Import</button>
+                    <button class="editorButton" onclick="el('importContainer').style.display = 'none';">Close</button>
+                </div>
             </div>
             <div id="editorCardContainer" class="container"></div>
         </div>
-        -->
         
         <div id="issues" class="container" style="display: none;">
             <h1 id="issuetitle">There seem to be no open issues</h1>
             <button onclick="window.open('https://github.com/rsploits/rsploits.github.io/issues/new');">Open issue</button>
         </div>
         
-        <div id="credits">
+        <div id="credits" style="display: none;">
             <div class="container">
                 <h1>Credits</h1>
                 <p>Site layout: justacoder</p>
@@ -89,12 +107,15 @@
         <a onclick="changeTab('credits', this);" id="nav_credits_button">Credits</a>
         <a onclick="window.open('https://ko-fi.com/justacoder');">Support the creator of this website!</a>
         <a onclick="window.open('https://www.reddit.com/r/ROBLOXExploiting/comments/1ec157l/donate_to_the_sub');">Support r/ROBLOXExploiting!</a>
-        <!--<a onclick="changeTab('editor', this);" id="nav_editor_button">Data Editor/Card Creator</a>-->
+        <a onclick="changeTab('editor', this);" id="nav_editor_button">Data Editor/Card Creator</a>
     </div>
     <div id="overlay" style="display: none; background-color: #00000000"></div>
     <img id="background" src="assets/background.png"></img>
     <script src="index.js"></script>
 
     <script>changeTab('exploits', document.getElementById('nav_exploits_button'));</script><!-- weird behaviour otherwise -->
+
+    <!-- testing -->
+    <script>changeTab('editor', document.getElementById('nav_editor_button'));</script>
 </body>
 </html>

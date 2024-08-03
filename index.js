@@ -13,7 +13,7 @@ function changeTab(name, button) { // very messy but works
     el("bypassers").style.display = "none";
     el("adblockers").style.display = "none";
     el("credits").style.display = "none";
-    //el("editor").style.display = "none";
+    el("editor").style.display = "none";
     el("issues").style.display = "none";
     el(name).style.display = "flex";
     el("nav_exploits_button").className = "";
@@ -21,7 +21,7 @@ function changeTab(name, button) { // very messy but works
     el("nav_bypassers_button").className = "";
     el("nav_adblockers_button").className = "";
     el("nav_credits_button").className = "";
-    //el("nav_editor_button").className = "";
+    el("nav_editor_button").className = "";
     el("nav_issues_button").className = "";
     button.className = "active";
 }
@@ -251,17 +251,338 @@ function createAllCardsFromJson(data) {
     }
 }
 
+var editorCardData = {};
+var editorCardIndex = 0;
 
-function createEditableCard() {
+function createEditableCard(data, id) {
 
+    var title = data.title;
+    var platforms = data.platforms;
+    var pros = data.pros;
+    var neutrals = data.neutrals;
+    var cons = data.cons;
+    var unc = data.unc;
+    var level = data.level;
+    var decompiler = data.features?.decompiler;
+    var keyless = data.features?.keyless;
+    var free = data.features?.free;
+    var buttonName = data.buttonName;
+    var buttonUrl = data.buttonUrl;
+    
+    var cardDiv = document.createElement("div");
+    document.getElementById("editorCardContainer").appendChild(cardDiv);
+    cardDiv.className = "excard editorcard";
+    cardDiv.id = id;
+
+    var cardContent = document.createElement("div");
+    cardDiv.appendChild(cardContent);
+    cardContent.className = "content";
+
+    var cardTitle = document.createElement("h1");
+    cardContent.appendChild(cardTitle);
+    cardTitle.className = "exname";
+    
+    var titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.spellcheck = "false";
+    titleInput.value = title;
+    cardTitle.appendChild(titleInput);
+    cardTitle.appendChild(document.createElement("hr"));
+    titleInput.addEventListener("input", e => {
+        editorCardData[cardDiv.id].title = titleInput.value;
+    });
+
+    var cardControlsContainer = document.createElement("div");
+    cardContent.append(cardControlsContainer);
+    cardControlsContainer.className = "editorCardControlsContainer";
+
+    var upButton = document.createElement("button");
+    cardControlsContainer.appendChild(upButton);
+    upButton.className = "up";
+    upButton.addEventListener("click", e => {
+
+        if (cardDiv.previousElementSibling) {
+
+            var oldId = cardDiv.id;
+            cardDiv.id = cardDiv.previousElementSibling.id;
+            cardDiv.previousElementSibling.id = oldId;
+            cardDiv.parentElement.insertBefore(cardDiv, cardDiv.previousElementSibling);
+            var newId = cardDiv.id;
+
+            var oldData = editorCardData[oldId];
+            editorCardData[oldId] = editorCardData[newId];
+            editorCardData[newId] = oldData;
+
+        }
+
+    });
+
+    var downButton = document.createElement("button");
+    cardControlsContainer.appendChild(downButton);
+    downButton.className = "down";
+    downButton.addEventListener("click", e => {
+
+        if (cardDiv.nextElementSibling) {
+
+            var oldId = cardDiv.id;
+            cardDiv.id = cardDiv.nextElementSibling.id;
+            cardDiv.nextElementSibling.id = oldId;
+            cardDiv.parentElement.insertBefore(cardDiv.nextElementSibling, cardDiv);
+            var newId = cardDiv.id;
+
+            var oldData = editorCardData[oldId];
+            editorCardData[oldId] = editorCardData[newId];
+            editorCardData[newId] = oldData;
+
+        }
+
+    });
+
+    var removeButton = document.createElement("button");
+    cardControlsContainer.appendChild(removeButton);
+    removeButton.className = "remove";
+    removeButton.addEventListener("click", e => {
+        delete editorCardData[cardDiv.id];
+        cardDiv.remove();
+    });
+
+    var proConDiv = document.createElement("div");
+    cardContent.appendChild(proConDiv);
+    proConDiv.className = "exprocon";
+
+    [["g", pros], ["n", neutrals], ["b", cons]].forEach(c => {
+
+        function editedProCons() {
+
+            var proCons = {
+                "g": [], "n": [], "b": []
+            };
+            for (var p of proConDiv.getElementsByTagName("p")) {
+                proCons[p.className].push(p.getElementsByTagName("input").item(0).value);
+            }
+            
+            [["pros", "g"], ["neutrals", "n"], ["cons", "b"]].forEach(c => {
+                editorCardData[cardDiv.id][c[0]] = proCons[c[1]];
+            });
+
+        }
+
+        function createProConP(type, value) {
+
+            var p = document.createElement("p");
+            p.className = type;
+
+            var removeButton = document.createElement("button");
+            removeButton.className = "removeprocon";
+            removeButton.innerHTML = "-";
+            p.appendChild(removeButton);
+
+            var proconInput = document.createElement("input");
+            p.appendChild(proconInput);
+            proconInput.type = "text";
+            proconInput.spellcheck = "false";
+            proconInput.value = value;
+
+            removeButton.addEventListener("click", e => {
+                p.remove();
+                editedProCons();
+            });
+            proconInput.addEventListener("input", e => {
+                editedProCons();
+            });
+
+            return p;
+
+        }
+
+        c[1].forEach(a => {
+            proConDiv.appendChild(createProConP(c[0], a));
+        });
+
+        var addButton = document.createElement("button");
+        proConDiv.appendChild(addButton);
+        addButton.className = "add" + c[0].toUpperCase();
+        addButton.innerHTML = "+";
+        addButton.addEventListener("click", e => {
+            proConDiv.insertBefore(createProConP(c[0], ""), addButton);
+            editedProCons();
+        });
+
+    });
+
+    var metaDiv = document.createElement("div");
+    cardContent.appendChild(metaDiv);
+    metaDiv.className = "exmeta";
+
+    [["UNC", unc], ["Level", level]].forEach(d => {
+
+        var dataDiv = document.createElement("div");
+        metaDiv.appendChild(dataDiv);
+        metaDiv.appendChild(document.createElement("hr"));
+        dataDiv.className = "exdata";
+
+        var label = document.createElement("p");
+        dataDiv.appendChild(label);
+        label.className = "exdatalabel";
+        label.innerHTML = d[0];
+
+        var value = document.createElement("p");
+        dataDiv.appendChild(value);
+        var valueInput = document.createElement("input");
+        value.append(valueInput);
+        valueInput.type = "text";
+        valueInput.spellcheck = "false";
+        valueInput.value = d[1];
+        valueInput.addEventListener("input", e => {
+            editorCardData[cardDiv.id][d[0].toLowerCase()] = valueInput.value;
+        });
+        value.className = "exdatavalue";
+
+    });
+
+    var platformsDiv = document.createElement("div");
+    cardContent.appendChild(platformsDiv);
+    platformsDiv.className = "explatforms";
+
+    var platformIconContainer = document.createElement("div");
+    platformsDiv.appendChild(platformIconContainer);
+    platformsDiv.appendChild(document.createElement("hr"));
+    platformIconContainer.className = "explatformsiconcontainer";
+
+    ["windows", "android", "macos", "ios"].forEach(p => {
+        var icon = document.createElement("div");
+        platformIconContainer.appendChild(icon);
+        icon.className = "icon " + p + (platforms.includes(p) ? " en" : " dis") + "abled";
+        icon.addEventListener("click", e => {
+            if (platforms.includes(p)) {
+                platforms.splice(platforms.indexOf(p), 1);
+            } else {
+                platforms.push(p);
+            }
+            var sortOrder = ["windows", "android", "macos", "ios"];
+            platforms.sort((a, b) => sortOrder.indexOf(a) - sortOrder.indexOf(b));
+            icon.className = "icon " + p + (platforms.includes(p) ? " en" : " dis") + "abled";
+        });
+    });
+
+    var featuresDiv = document.createElement("div");
+    cardContent.appendChild(featuresDiv);
+    featuresDiv.className = "exfeatures";
+
+    var decompilerP = document.createElement("p");
+    featuresDiv.appendChild(decompilerP);
+    decompilerP.className = decompiler ? "g" : "b";
+    decompilerP.innerHTML = "Decompiler";
+
+    var decompilerCheckbox = document.createElement("input");
+    featuresDiv.appendChild(decompilerCheckbox);
+    decompilerCheckbox.type = "checkbox";
+    decompilerCheckbox.checked = decompiler;
+    decompilerCheckbox.addEventListener("input", e => {
+        editorCardData[cardDiv.id].features.decompiler = decompilerCheckbox.checked;
+        decompilerP.className = decompilerCheckbox.checked ? "g" : "b";
+    });
+
+    featuresDiv.appendChild(document.createElement("hr"));
+
+    var freeP = document.createElement("p");
+    featuresDiv.appendChild(freeP);
+    freeP.className = free ? "g" : "b";
+    freeP.innerHTML = "Free";
+
+    var freeCheckbox = document.createElement("input");
+    featuresDiv.appendChild(freeCheckbox);
+    freeCheckbox.type = "checkbox";
+    freeCheckbox.checked = free;
+    freeCheckbox.addEventListener("input", e => {
+        editorCardData[cardDiv.id].features.free = freeCheckbox.checked;
+        freeP.className = freeCheckbox.checked ? "g" : "b";
+    });
+
+    featuresDiv.appendChild(document.createElement("hr"));
+
+    var keylessP = document.createElement("p");
+    featuresDiv.appendChild(keylessP);
+    keylessP.className = keyless ? "g" : "b";
+    keylessP.innerHTML = "Keyless";
+
+    var keylessCheckbox = document.createElement("input");
+    featuresDiv.appendChild(keylessCheckbox);
+    keylessCheckbox.type = "checkbox";
+    keylessCheckbox.checked = keyless;
+    keylessCheckbox.addEventListener("input", e => {
+        editorCardData[cardDiv.id].features.keyless = keylessCheckbox.checked;
+        keylessP.className = keylessCheckbox.checked ? "g" : "b";
+    });
+
+    var button = document.createElement("button");
+    cardContent.appendChild(button);
+    
+    var buttonNameInput = document.createElement("input");
+    button.appendChild(buttonNameInput);
+    buttonNameInput.type = "text";
+    buttonNameInput.spellcheck = "false";
+    buttonNameInput.value = buttonName;
+    buttonNameInput.addEventListener("input", e => {
+        editorCardData[cardDiv.id].buttonName = buttonNameInput.value;
+    });
+
+    var buttonUrlInput = document.createElement("input");
+    button.appendChild(buttonUrlInput);
+    buttonUrlInput.className = "buttonUrl";
+    buttonUrlInput.type = "text";
+    buttonUrlInput.spellcheck = "false";
+    buttonUrlInput.value = buttonUrl;
+    buttonUrlInput.addEventListener("input", e => {
+        editorCardData[cardDiv.id].buttonUrl = buttonUrlInput.value;
+    });
 }
 
 function createAllEditableCardsFromJson(data) {
-    // CLEAR ALL EXISTING EDITABLE CARDS
+    document.getElementById("editorCardContainer").innerHTML = "";
     var json = JSON.parse(data);
+    editorCardIndex = 0;
     for (card of json) {
-        createEditableCard(card);
+        createEditableCard(card, editorCardIndex);
+        editorCardData[editorCardIndex] = card;
+        editorCardIndex++;
     }
+}
+
+function addNewEditableCard() {
+    var data = {
+        title: "Placeholder Title",
+        platforms: [],
+        pros: [],
+        neutrals: [],
+        cons: [],
+        unc: "Placeholder UNC",
+        level: "Placeholder Level",
+        features: {
+            decompiler: false,
+            free: false,
+            keyless: false
+        },
+        buttonName: "Placeholder Button",
+        buttonUrl: "Placeholder URL"
+    }
+    createEditableCard(data, editorCardIndex);
+    editorCardData[editorCardIndex] = data;
+    editorCardIndex++;
+}
+
+function exportEditorCardsToJson() {
+    var exploitList = Object.keys(editorCardData).map(Number).sort((a, b) => a - b).map(key => editorCardData[key]); 
+
+    var exportContainer = el("exportContainer");
+    exportContainer.style.display = "flex";
+
+    el("exportTextArea").value = JSON.stringify(exploitList);
+}
+
+function importEditorCardsFromJson() {
+    var importContainer = el("importContainer");
+    importContainer.style.display = "flex";
 }
 
 function autoImportEditableCards() {
@@ -476,4 +797,21 @@ function createAllAdblockerCardsFromJson(data) {
     [ISSUE_DATA_URL, createAllIssueCardsFromJson]
 ].forEach(i => {
     fetch(i[0]).then(d => d.text()).then(i[1]);
+});
+
+
+var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
+importContainer.addEventListener("click", e => {
+    if (e.target != importContainer) {
+        return;
+    }
+    importContainer.style.display = "none";
+});
+
+var exportContainer = el("exportContainer");
+exportContainer.addEventListener("click", e => {
+    if (e.target != exportContainer) {
+        return;
+    }
+    exportContainer.style.display = "none";
 });
