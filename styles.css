@@ -296,7 +296,7 @@ hr {
 }
 
 .small {
-    font-size: xx-small;
+    font-size: xx-small !important;
 }
 
 .small a {
@@ -899,6 +899,33 @@ input.buttonUrl {
 
 #editor {
     flex-direction: column;
+}
+
+.updatedVersion {
+    color: #ffffff;
+    text-align: left;
+    font-size: 0.85em;
+}
+
+.updatedVersionsContainer {
+    margin: 0px;
+    padding: 5px;
+    margin-left: 100%;
+    margin-right: 100%;
+    text-wrap: nowrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+#latestWinVer, #latestMacVer {
+    font-family: monospace;
+}
+
+#latestWinVerDate, #latestMacVerDate {
+    font-size: smaller;
 }
 
 @media screen and (max-width: 700px) {

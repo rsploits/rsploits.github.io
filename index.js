@@ -4,6 +4,9 @@ var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-
 var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
+var UPDATE_DATA_URL = "https://rsploits-api-a7e9a7d7a89e.herokuapp.com/roblox-version";
+// USAGE OF THE ABOVE APIs IS PROHIBITED FOR ANYTHING OR ANYONE BESIDES RSPLOITS.GITHUB.IO WITHOUT PROPER CREDITING. 
+// USAGE ALLOWANCE CAN BE REVOKED BY THE OWNER AT ANY TIME.
 
 var el = x => document.getElementById(x);
 
@@ -793,14 +796,31 @@ function createAllAdblockerCardsFromJson(data) {
     }
 }
 
+function updateLatestUpdateDate(data) {
+    var parsed = JSON.parse(data);
+    var windows = parsed["windows_version"];
+    var macos = parsed["mac_version"];
+    var windows_date = parsed["windows_date"];
+    var macos_date = parsed["mac_date"];
+    windows_date = new Date(Date.parse(windows_date)).toLocaleString();
+    macos_date = new Date(Date.parse(macos_date)).toLocaleString();
+    el("latestWinVer").innerHTML = windows;
+    el("latestMacVer").innerHTML = macos;
+    el("latestWinVerDate").innerHTML = windows_date;
+    el("latestMacVerDate").innerHTML = macos_date;
+}
+
+updateLatestUpdateDate('{"windows_version":"version-6fdcfe060c6440cd","windows_date":"8/7/2024, 8:17:38 PM","mac_version":"version-6efae474a1694844","mac_date":"8/7/2024, 8:17:18 PM"}');
+
 [
     [EXPLOIT_DATA_URL, createAllCardsFromJson],
     [MALWARE_DATA_URL, createAllMalwareCardsFromJson],
     [BYPASSERS_DATA_URL, createAllBypasserCardsFromJson],
     [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
-    [ISSUE_DATA_URL, createAllIssueCardsFromJson]
+    [ISSUE_DATA_URL, createAllIssueCardsFromJson],
+    [UPDATE_DATA_URL, updateLatestUpdateDate]
 ].forEach(i => {
-    fetchNoCaching(i[0]).then(d => d.text()).then(i[1]);
+    fetch(i[0]).then(d => d.text()).then(i[1]);
 });
 
 
