@@ -7,6 +7,20 @@ var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/is
 
 var el = x => document.getElementById(x);
 
+function fetchNoCaching(url) {
+    return fetch(
+        url + "?dummyvalue=" + Date.now(),
+        {
+            method: "GET",
+            headers: {
+                "pragma": "no-cache",
+                "cache-control": "no-cache"
+            },
+            cache: "no-store"
+        }
+    );
+}
+
 function changeTab(name, button) { // very messy but works
     el("exploits").style.display = "none";
     el("viruses").style.display = "none";
@@ -586,7 +600,7 @@ function importEditorCardsFromJson() {
 }
 
 function autoImportEditableCards() {
-    fetch(EXPLOIT_DATA_URL + "?dummyvalue=" + Date.now(), { cache: "no-store" }).then(data => data.text()).then(createAllEditableCardsFromJson);
+    fetchNoCaching(EXPLOIT_DATA_URL).then(data => data.text()).then(createAllEditableCardsFromJson);
 }
 
 function createIssueCard(data) {
@@ -796,7 +810,7 @@ function createAllAdblockerCardsFromJson(data) {
     [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
     [ISSUE_DATA_URL, createAllIssueCardsFromJson]
 ].forEach(i => {
-    fetch(i[0] + "?dummyvalue=" + Date.now(), { cache: "no-store" }).then(d => d.text()).then(i[1]);
+    fetchNoCaching(i[0]).then(d => d.text()).then(i[1]);
 });
 
 
