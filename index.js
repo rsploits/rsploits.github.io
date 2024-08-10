@@ -8,7 +8,7 @@ var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/is
 var el = x => document.getElementById(x);
 
 function fetchNoCaching(url) {
-    return fetch("https://corsproxy.io/?" + encodeURIComponent(url));
+    return fetch(url);
 }
 
 function changeTab(name, button) { // very messy but works
