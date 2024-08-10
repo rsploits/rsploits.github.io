@@ -586,7 +586,7 @@ function importEditorCardsFromJson() {
 }
 
 function autoImportEditableCards() {
-    fetch(EXPLOIT_DATA_URL).then(data => data.text()).then(createAllEditableCardsFromJson);
+    fetch(EXPLOIT_DATA_URL, { cache: "no-store" }).then(data => data.text()).then(createAllEditableCardsFromJson);
 }
 
 function createIssueCard(data) {
@@ -796,7 +796,7 @@ function createAllAdblockerCardsFromJson(data) {
     [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
     [ISSUE_DATA_URL, createAllIssueCardsFromJson]
 ].forEach(i => {
-    fetch(i[0]).then(d => d.text()).then(i[1]);
+    fetch(i[0], { cache: "no-store" }).then(d => d.text()).then(i[1]);
 });
 
 
