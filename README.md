@@ -1,2 +1,2 @@
 # rsploits.github.io
-Roblox Exploits, page owned by justacoder (github: @davidsaltacc) and the r/ROBLOXExploiting moderator team
+Roblox Exploits, page made by justacoder (github: @davidsaltacc), page owned by justacoder and the r/ROBLOXExploiting moderator team
