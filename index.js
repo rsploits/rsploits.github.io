@@ -3,7 +3,7 @@ var EXPLOIT_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-
 var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/viruses-rats-fakes.json";
 var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
-var ISSUE_DATA_URL = "https://api.github.com/repos/rsploits/rsploits.github.io/issues";
+var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
 
 var el = x => document.getElementById(x);
 
