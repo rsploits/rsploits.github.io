@@ -810,8 +810,6 @@ function updateLatestUpdateDate(data) {
     el("latestMacVerDate").innerHTML = macos_date;
 }
 
-updateLatestUpdateDate('{"windows_version":"version-6fdcfe060c6440cd","windows_date":"8/7/2024, 8:17:38 PM","mac_version":"version-6efae474a1694844","mac_date":"8/7/2024, 8:17:18 PM"}');
-
 [
     [EXPLOIT_DATA_URL, createAllCardsFromJson],
     [MALWARE_DATA_URL, createAllMalwareCardsFromJson],
