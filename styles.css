@@ -908,16 +908,21 @@ input.buttonUrl {
 }
 
 .updatedVersionsContainer {
-    margin: 0px;
+    width: fit-content;
     padding: 5px;
-    margin-left: 100%;
-    margin-right: 100%;
-    text-wrap: nowrap;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 8px;
+}
+
+.updatedVersionsContainerContainer { /* this is dumb. */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #latestWinVer, #latestMacVer {

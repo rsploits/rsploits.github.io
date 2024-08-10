@@ -800,8 +800,8 @@ function updateLatestUpdateDate(data) {
     var parsed = JSON.parse(data);
     var windows = parsed["windows_version"];
     var macos = parsed["mac_version"];
-    var windows_date = parsed["windows_date"];
-    var macos_date = parsed["mac_date"];
+    var windows_date = parsed["windows_date"] + " UTC";
+    var macos_date = parsed["mac_date"] + " UTC";
     windows_date = new Date(Date.parse(windows_date)).toLocaleString();
     macos_date = new Date(Date.parse(macos_date)).toLocaleString();
     el("latestWinVer").innerHTML = windows;
