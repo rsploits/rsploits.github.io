@@ -8,15 +8,19 @@ var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/is
 var el = x => document.getElementById(x);
 
 function fetchNoCaching(url) {
+    var testing = window.location.href.startsWith("http:");
+    if (testing) {
+        url = "https://corsproxy.io/?" + encodeURIComponent(url);
+    }
     return fetch(
-        url + "?dummyvalue=" + Date.now(),
-        {
-            method: "GET",
+        url,
+        testing ? {} : {
             headers: {
                 "pragma": "no-cache",
                 "cache-control": "no-cache"
             },
-            cache: "no-store"
+            cache: "no-store",
+            mode: "no-cors"
         }
     );
 }
