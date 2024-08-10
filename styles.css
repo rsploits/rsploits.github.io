@@ -908,7 +908,7 @@ input.buttonUrl {
 }
 
 .updatedVersionsContainer {
-    width: fit-content;
+    width: max-content;
     padding: 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -918,11 +918,15 @@ input.buttonUrl {
 }
 
 .updatedVersionsContainerContainer { /* this is dumb. */
-    width: 100vw;
+    width: 100%;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#exploits {
+    overflow-x: hidden;
 }
 
 #latestWinVer, #latestMacVer {
