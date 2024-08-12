@@ -929,11 +929,11 @@ input.buttonUrl {
     overflow-x: hidden;
 }
 
-#latestWinVer, #latestMacVer {
+#latestWinVer, #latestMacVer, #latestAndVer, #latestIosVer {
     font-family: monospace;
 }
 
-#latestWinVerDate, #latestMacVerDate {
+#latestWinVerDate, #latestMacVerDate, #latestAndVerDate, #latestIosVerDate {
     font-size: smaller;
 }
 
