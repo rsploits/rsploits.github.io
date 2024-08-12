@@ -4,7 +4,7 @@ var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-
 var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
-var UPDATE_DATA_URL = "https://rsploits-api-a7e9a7d7a89e.herokuapp.com/roblox-version";
+var UPDATE_DATA_URL = "https://rear-olwen-rsploits-4f8dc15e.koyeb.app/roblox-version";
 // USAGE OF THE ABOVE APIs IS PROHIBITED FOR ANYTHING OR ANYONE BESIDES RSPLOITS.GITHUB.IO WITHOUT PROPER CREDITING. 
 // USAGE ALLOWANCE CAN BE REVOKED BY THE OWNER AT ANY TIME.
 
@@ -809,8 +809,6 @@ function updateLatestUpdateDate(data) {
     el("latestWinVerDate").innerHTML = windows_date;
     el("latestMacVerDate").innerHTML = macos_date;
 }
-
-updateLatestUpdateDate('{"windows_version":"version-6fdcfe060c6440cd","windows_date":"8/7/2024, 8:17:38 PM","mac_version":"version-6efae474a1694844","mac_date":"8/7/2024, 8:17:18 PM"}');
 
 [
     [EXPLOIT_DATA_URL, createAllCardsFromJson],
