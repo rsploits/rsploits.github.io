@@ -5,6 +5,7 @@ var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploit
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
 var UPDATE_DATA_URL = "https://rear-olwen-rsploits-4f8dc15e.koyeb.app/roblox-version";
+var SCIENCE_URL = "https://youngest-dannie-justacoder-a04ac90d.koyeb.app/science";
 // USAGE OF THE ABOVE APIs IS PROHIBITED FOR ANYTHING OR ANYONE BESIDES RSPLOITS.GITHUB.IO WITHOUT PROPER CREDITING. 
 // USAGE ALLOWANCE CAN BE REVOKED BY THE OWNER AT ANY TIME.
 
@@ -831,6 +832,9 @@ function updateLatestUpdateDate(data) {
     fetch(i[0]).then(d => d.text()).then(i[1]);
 });
 
+fetch(SCIENCE_URL, {
+    method: "POST"
+});
 
 var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
 importContainer.addEventListener("click", e => {
