@@ -14,6 +14,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -48,6 +50,12 @@ body {
     transition: 0.5s;
     min-height: 300px;
     zoom: 80%;
+}
+
+@-moz-document url-prefix() {
+    .container .card {
+        font-size: 80%;
+    }
 }
 
 .container .bypass {
@@ -95,19 +103,15 @@ body {
 }
 
 #background {
-    z-index: -1; 
-    display: block;
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    object-fit: cover;
-    background-position: center;
-    width: 100%;
+    width: 100vw;
     height: 100%;
+    background-image: url("assets/background.png");
+    background-size: cover;
+    z-index: -1; 
 }
-
 
 .container .card .content .text button, .excard button {
     margin-top: 10px;
@@ -188,7 +192,7 @@ hr {
     background-color: #ffffff20;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 60px;
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
@@ -214,7 +218,9 @@ hr {
 .topbar .pagename {
     text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
     float: left;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background-color: #ffffff30;
     margin-right: 2px;
@@ -246,6 +252,8 @@ hr {
 
 .filterbuttoncontainer button {
     border-radius: 6px;
+    min-width: 50px;
+    min-height: 50px;
     width: 50px;
     height: 50px;
     background-color: #00000000;
@@ -260,6 +268,7 @@ hr {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    margin-right: 0;
 }
 
 .filter-icon-container {
@@ -269,12 +278,25 @@ hr {
     display: flex;
     transition: .4s;
     transition-timing-function: ease-in-out;
+    flex-wrap: wrap;
+    z-index: 2;
+    background-color: #818181a0;
+    -webkit-backdrop-filter: brightness(60%);
+    backdrop-filter: brightness(60%);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 0;
 }
 
 .filterico {
     cursor: pointer;
     transition: 0.25s;
     background-color: #ffffff00;
+    margin: 2px;
 }
 
 .filterico.active {
@@ -293,6 +315,11 @@ hr {
 ::-webkit-scrollbar-thumb {
     background: #888888; 
     border-radius: 3px;
+}
+
+* { /* firefox */
+    scrollbar-color: #888888 #444444; 
+    scrollbar-width: thin;
 }
 
 .small {
@@ -573,6 +600,13 @@ h1, h2 {
     zoom: 80%;
 }
 
+@-moz-document url-prefix() {
+    .excard {
+        font-size: 80%;
+    }
+}
+
+
 .excard:hover {
     transform: translateX(4px);
     background: rgba(255, 255, 255, 0.12);
@@ -622,19 +656,23 @@ h1, h2 {
 .exdatalabel {
     color: #ffffff;
     text-align: left;
-    width: 200px;
     position: relative;
     left: 10px;
     top: 10px;
+    width: 200px;
 }
 
 .exdatavalue {
     color: #ffffff;
     text-align: right;
-    width: 200px;
+    width: 100%;
     position: relative;
     right: 10px;
     top: 10px;
+}
+
+.exdatavalue input {
+    width: 100%;
 }
 
 #credits .container hr {
@@ -815,6 +853,12 @@ input.buttonUrl {
     padding: 5px;
 }
 
+@-moz-document url-prefix() {
+    .exprocon p input {
+        font-size: 80%;
+    }
+}
+
 .exprocon p.g input {
     color: #6fff6f;
 }
@@ -935,6 +979,34 @@ input.buttonUrl {
 
 #latestWinVerDate, #latestMacVerDate, #latestAndVerDate, #latestIosVerDate {
     font-size: smaller;
+}
+
+.bottomBarBorder {
+    position: relative;
+    height: 1px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+}
+
+.bottomBar {
+    position: relative;
+    height: 70px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #8a8a8a56;
+    z-index: 3;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-bottom: 12px;
 }
 
 @media screen and (max-width: 700px) {
