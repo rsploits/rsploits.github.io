@@ -15,7 +15,7 @@ function fetchNoCaching(url) {
     return fetch(url);
 }
 
-function changeTab(name, button) { // very messy but works
+function changeTab(name, button) {
     el("exploits").style.display = "none";
     el("viruses").style.display = "none";
     el("bypassers").style.display = "none";

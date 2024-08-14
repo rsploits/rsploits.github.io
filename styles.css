@@ -204,6 +204,7 @@ hr {
     float: right;
     text-align: center;
     padding: 18px 16px;
+    padding-right: 22px;
     background-color: #ffffff30;
     margin-left: 2px;
     cursor: pointer;
@@ -317,9 +318,10 @@ hr {
     border-radius: 3px;
 }
 
-* { /* firefox */
+* {
     scrollbar-color: #888888 #444444; 
     scrollbar-width: thin;
+    scrollbar-gutter: stable;
 }
 
 .small {
@@ -350,6 +352,10 @@ hr {
     line-height: 1em;
     color: #e0e0e0;
     display: block;
+}
+
+#hamburgerpopup {
+    color: red;
 }
 
 @media screen and (max-width: 400px) {
