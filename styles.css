@@ -352,11 +352,7 @@ hr {
     line-height: 1em;
     color: #e0e0e0;
     display: block;
-}
-
-#hamburgerpopup {
-    color: red;
-}
+}
 
 @media screen and (max-width: 400px) {
     .container .card .content .text {
