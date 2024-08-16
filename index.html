@@ -32,7 +32,7 @@
             <span class="popuptext" id="hamburgerpopup">Keysystem bypassers, RAT lists, Issues/Suggestions, and more!</span>
         </a>
         <script>
-            if (document.cookie == "hidepopup=true") { document.getElementById("hamburgerpopup").style.display = "none"; }
+            if (localStorage.getItem("hidepopup") == "true") { document.getElementById("hamburgerpopup").style.display = "none"; }
         </script>
     </div>
 

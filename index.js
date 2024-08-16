@@ -116,7 +116,7 @@ function toggleFilter(name, button) {
 }
 
 function toggleNav() {
-    document.cookie = "hidepopup=true";
+    localStorage.setItem("hidepopup", "true");
     el("hamburgerpopup").style.display = "none";
     var sidebar = el("sidebar");
     var overlay = el("overlay");
