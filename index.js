@@ -832,9 +832,11 @@ function updateLatestUpdateDate(data) {
     fetch(i[0]).then(d => d.text()).then(i[1]);
 });
 
-fetch(SCIENCE_URL, {
-    method: "POST"
-});
+try {
+    fetch(SCIENCE_URL, {
+        method: "POST"
+    });
+} catch {}
 
 var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
 importContainer.addEventListener("click", e => {
