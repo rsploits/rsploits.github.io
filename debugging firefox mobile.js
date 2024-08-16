@@ -4,7 +4,7 @@ try {
 
 
 var UPDATE_DATA_URL = "https://rear-olwen-rsploits-4f8dc15e.koyeb.app/roblox-version";
-var el = document.getElementById;
+var el = function(i) { return document.getElementById("i"); };
 
 function updateLatestUpdateDate(data) {
     var parsed = JSON.parse(data);
