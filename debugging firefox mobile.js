@@ -16,10 +16,14 @@ function updateLatestUpdateDate(data) {
     var android_date = parsed["android_date"] + " UTC";
     var macos_date = parsed["mac_date"] + " UTC";
     var ios_date = parsed["ios_date"] + " UTC";
+    el("text").innerHTML += data + "<br><br>";
+    el("text").innerHTML += parsed + "<br><br>";
     windows_date = new Date(Date.parse(windows_date)).toLocaleString();
     android_date = new Date(Date.parse(android_date)).toLocaleString();
     macos_date = new Date(Date.parse(macos_date)).toLocaleString();
     ios_date = new Date(Date.parse(ios_date)).toLocaleString();
+    el("text").innerHTML += windows_date + "<br><br>";
+    el("text").innerHTML += android_date + "<br><br>";
     el("latestWinVer").innerHTML = windows;
     el("latestAndVer").innerHTML = android;
     el("latestMacVer").innerHTML = macos;
