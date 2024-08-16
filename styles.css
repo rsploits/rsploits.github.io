@@ -352,7 +352,8 @@ hr {
     line-height: 1em;
     color: #e0e0e0;
     display: block;
-}
+}
+
 
 @media screen and (max-width: 400px) {
     .container .card .content .text {
@@ -1010,6 +1011,83 @@ input.buttonUrl {
 
 .container {
     margin-bottom: 12px;
+}
+
+#discordpopupcontainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+}
+
+.discordpopup {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 35px;
+    border-radius: 30%;
+    background-color: #5663f1;
+    background-image: url("assets/icons/discord.svg");
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    cursor: pointer;
+}
+
+.discordpopup:after {
+    content: attr(description-name);
+    display: block;
+    position: absolute;
+    left: -260px;
+    top: 29px;
+    width: max-content;
+    padding: 8px;
+    padding-top: 2px;
+    padding-bottom: 14px;
+    padding-right: 80px;
+    -webkit-backdrop-filter: brightness(60%) blur(4px);
+    backdrop-filter: brightness(60%) blur(4px);
+    color: #ffffff;
+    border-radius: 8px;
+    z-index: -1;
+    border: 1px solid #ffffff7b;
+}
+
+.discordpopup:before {
+    content: "Don't be afraid of the low membercount. We are new!";
+    display: block;
+    position: absolute;
+    left: -260px;
+    top: 45px;
+    width: max-content;
+    padding: 8px;
+    font-size: xx-small;
+    color: #ffffff;
+    z-index: 0;
+}
+
+.discordpopupX {
+    color: #ffffff;
+    position: relative;
+    top: 2px;
+    left: -18px;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: block;
+    -webkit-backdrop-filter: brightness(60%) blur(4px);
+    backdrop-filter: brightness(60%) blur(4px);
+    border: 1px solid #ffffff7b;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {

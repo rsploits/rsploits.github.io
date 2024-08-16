@@ -853,3 +853,15 @@ exportContainer.addEventListener("click", e => {
     }
     exportContainer.style.display = "none";
 });
+
+var dcNames = ["Updates", "News", "Support", "Chatting"];
+var dcIndex = 0;
+
+function updateDcPopup() {
+    document.getElementById("discordpopup").setAttribute("description-name", "Join the discord for " + dcNames[dcIndex % dcNames.length] + "!");
+    dcIndex += 1;
+}
+
+updateDcPopup();
+
+setInterval(() => { updateDcPopup(); }, 1000);
