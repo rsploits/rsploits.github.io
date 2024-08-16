@@ -4,7 +4,7 @@ try {
 
 
 var UPDATE_DATA_URL = "https://rear-olwen-rsploits-4f8dc15e.koyeb.app/roblox-version";
-
+var el = document.getElementById;
 
 function updateLatestUpdateDate(data) {
     var parsed = JSON.parse(data);
@@ -35,6 +35,6 @@ updateLatestUpdateDate(await (await fetch(UPDATE_DATA_URL)).text());
 
 
 } catch (e) {
-    document.getElementById("text").innerHTML += e.stack;
+    el("text").innerHTML += e.stack;
 }
 
