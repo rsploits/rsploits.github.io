@@ -1031,8 +1031,8 @@ input.buttonUrl {
         height: 120px;
     }
 
-    .topbar .pagename {
-        height: 60px;
+    .topbar .pagename, .hamburger {
+        height: 50%;
     }
 
     .centeredtopbartext {
