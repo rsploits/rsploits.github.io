@@ -4,6 +4,7 @@ var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-
 var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
+var SCIENCE_URL = "https://youngest-dannie-justacoder-a04ac90d.koyeb.app/science";
 // USAGE OF THE ABOVE APIs IS PROHIBITED FOR ANYTHING OR ANYONE BESIDES RSPLOITS.GITHUB.IO WITHOUT PROPER CREDITING. 
 // USAGE ALLOWANCE CAN BE REVOKED BY THE OWNER AT ANY TIME.
 
@@ -806,6 +807,10 @@ function createAllAdblockerCardsFromJson(data) {
 ].forEach(i => {
     fetch(i[0]).then(d => d.text()).then(i[1]);
 });
+
+fetch(SCIENCE_URL, {
+    method: "POST"
+})
 
 var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
 importContainer.addEventListener("click", e => {
