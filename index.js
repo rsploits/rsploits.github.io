@@ -4,8 +4,6 @@ var MALWARE_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-
 var BYPASSERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/bypassers.json";
 var ADBLOCKERS_DATA_URL = "https://raw.githubusercontent.com/davidsaltacc/exploits-data/main/adblockers.json";
 var ISSUE_DATA_URL = "https://api.github.com/repos/davidsaltacc/exploits-data/issues";
-var UPDATE_DATA_URL = "https://rear-olwen-rsploits-4f8dc15e.koyeb.app/roblox-version";
-var SCIENCE_URL = "https://youngest-dannie-justacoder-a04ac90d.koyeb.app/science";
 // USAGE OF THE ABOVE APIs IS PROHIBITED FOR ANYTHING OR ANYONE BESIDES RSPLOITS.GITHUB.IO WITHOUT PROPER CREDITING. 
 // USAGE ALLOWANCE CAN BE REVOKED BY THE OWNER AT ANY TIME.
 
@@ -36,10 +34,12 @@ function changeTab(name, button) {
 
 function toggleFilterMenu() {
     var filter = el("filter");
-    if (filter.style.transform == "translate(0px, -150px)") {
+    if (filter.style.transform == "translate(0px, -80px)") {
         filter.style.transform = "";
+        filter.style.opacity = "100%";
     } else {
-        filter.style.transform = "translate(0px, -150px)";
+        filter.style.transform = "translate(0px, -80px)";
+        filter.style.opacity = "0%";
     }
 }
 
@@ -797,46 +797,15 @@ function createAllAdblockerCardsFromJson(data) {
     }
 }
 
-function updateLatestUpdateDate(data) {
-    var parsed = JSON.parse(data);
-    var windows = parsed["windows_version"];
-    var android = parsed["android_version"];
-    var macos = parsed["mac_version"];
-    var ios = parsed["ios_version"];
-    var windows_date = parsed["windows_date"] + " UTC";
-    var android_date = parsed["android_date"] + " UTC";
-    var macos_date = parsed["mac_date"] + " UTC";
-    var ios_date = parsed["ios_date"] + " UTC";
-    windows_date = new Date(Date.parse(windows_date)).toLocaleString();
-    android_date = new Date(Date.parse(android_date)).toLocaleString();
-    macos_date = new Date(Date.parse(macos_date)).toLocaleString();
-    ios_date = new Date(Date.parse(ios_date)).toLocaleString();
-    el("latestWinVer").innerHTML = windows;
-    el("latestAndVer").innerHTML = android;
-    el("latestMacVer").innerHTML = macos;
-    el("latestIosVer").innerHTML = ios;
-    el("latestWinVerDate").innerHTML = windows_date;
-    el("latestAndVerDate").innerHTML = android_date;
-    el("latestMacVerDate").innerHTML = macos_date;
-    el("latestIosVerDate").innerHTML = ios_date;
-}
-
 [
     [EXPLOIT_DATA_URL, createAllCardsFromJson],
     [MALWARE_DATA_URL, createAllMalwareCardsFromJson],
     [BYPASSERS_DATA_URL, createAllBypasserCardsFromJson],
     [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
-    [ISSUE_DATA_URL, createAllIssueCardsFromJson],
-    [UPDATE_DATA_URL, updateLatestUpdateDate]
+    [ISSUE_DATA_URL, createAllIssueCardsFromJson]
 ].forEach(i => {
     fetch(i[0]).then(d => d.text()).then(i[1]);
 });
-
-try {
-    fetch(SCIENCE_URL, {
-        method: "POST"
-    });
-} catch {}
 
 var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
 importContainer.addEventListener("click", e => {
@@ -853,15 +822,3 @@ exportContainer.addEventListener("click", e => {
     }
     exportContainer.style.display = "none";
 });
-
-var dcNames = ["Updates", "News", "Support", "Chatting"];
-var dcIndex = 0;
-
-function updateDcPopup() {
-    document.getElementById("discordpopup").setAttribute("description-name", "Join the discord for " + dcNames[dcIndex % dcNames.length] + "!");
-    dcIndex += 1;
-}
-
-updateDcPopup();
-
-setInterval(() => { updateDcPopup(); }, 1000);

@@ -26,7 +26,6 @@ body {
     max-width: 1800px;
     flex-wrap: wrap;
     z-index: 1;
-    margin-top: 72px;
 }
 
 .container .card {
@@ -44,12 +43,10 @@ body {
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: brightness(50%);
-    backdrop-filter: brightness(50%);
+    background-color: #00000040;
     height: min-content;
     transition: 0.5s;
     min-height: 300px;
-    zoom: 80%;
 }
 
 @-moz-document url-prefix() {
@@ -68,7 +65,7 @@ body {
 
 .container .card:hover {
     transform: translateX(4px);
-    background: rgba(255, 255, 255, 0.12);
+    background-color: #14141440;
 }
 
 .container .card .content {
@@ -110,6 +107,7 @@ body {
     height: 100%;
     background-image: url("assets/background.png");
     background-size: cover;
+    background-position: center;
     z-index: -1; 
 }
 
@@ -194,8 +192,7 @@ hr {
     top: 0;
     width: 100vw;
     height: 60px;
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+    background-color: #00000093;
     overflow: visible;
     z-index: 102;
 }
@@ -228,6 +225,10 @@ hr {
     height: 100%;
     padding: 3px 20px;
     color: #e0e0e0;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+    font-weight: 600;
+    font-size: 1.5em;
 }
 
 .content h3 {
@@ -240,26 +241,23 @@ hr {
     backdrop-filter: brightness(60%);
 }
 
-#exploits {
+#contents {
     margin-top: 52px;
 }
 
 .filterbuttoncontainer {
-    top: 72px;
-    left: 11px;
-    position: absolute;
     display: flex;
+    width: 100%;
 }
 
-.filterbuttoncontainer button {
+.filterbutton {
     border-radius: 6px;
     min-width: 50px;
     min-height: 50px;
     width: 50px;
     height: 50px;
     background-color: #00000000;
-    -webkit-backdrop-filter: brightness(80%);
-    backdrop-filter: brightness(80%);
+    background-color: #0000007f;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -270,6 +268,7 @@ hr {
     background-position: center;
     cursor: pointer;
     margin-right: 0;
+    align-self: normal;
 }
 
 .filter-icon-container {
@@ -281,9 +280,6 @@ hr {
     transition-timing-function: ease-in-out;
     flex-wrap: wrap;
     z-index: 2;
-    background-color: #818181a0;
-    -webkit-backdrop-filter: brightness(60%);
-    backdrop-filter: brightness(60%);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -291,12 +287,13 @@ hr {
     padding: 5px;
     border-radius: 10px;
     margin-left: 0;
+    background-color: #131313e5;
 }
 
 .filterico {
     cursor: pointer;
     transition: 0.25s;
-    background-color: #ffffff00;
+    background-color: #00000000;
     margin: 2px;
 }
 
@@ -346,12 +343,14 @@ hr {
 }
 
 .hamburger {
-    width: 130px;
-    height: 60px;
+    width: 145px;
+    height: 100%;
     font-size: 1.5em;
+    letter-spacing: 0.06em;
     line-height: 1em;
     color: #e0e0e0;
     display: block;
+    text-transform: uppercase;
 }
 
 
@@ -368,11 +367,11 @@ hr {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #a0a0a0;
     transition: 0.2s;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    scrollbar-width: none;
 }
 
 @media screen and (max-width: 900px) {
@@ -587,7 +586,6 @@ h1, h2 {
     margin: 20px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -596,12 +594,10 @@ h1, h2 {
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: brightness(50%);
-    backdrop-filter: brightness(50%);
+    background-color: #00000040;
     height: min-content;
     transition: 0.5s;
     height: 330px;
-    zoom: 80%;
 }
 
 @-moz-document url-prefix() {
@@ -613,7 +609,7 @@ h1, h2 {
 
 .excard:hover {
     transform: translateX(4px);
-    background: rgba(255, 255, 255, 0.12);
+    background-color: #14141440;
 }
 
 .excard .content {
@@ -949,30 +945,6 @@ input.buttonUrl {
     flex-direction: column;
 }
 
-.updatedVersion {
-    color: #ffffff;
-    text-align: left;
-    font-size: 0.85em;
-}
-
-.updatedVersionsContainer {
-    width: max-content;
-    padding: 5px;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-}
-
-.updatedVersionsContainerContainer { /* this is dumb. */
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 #exploits {
     overflow-x: hidden;
 }
@@ -1013,83 +985,6 @@ input.buttonUrl {
     margin-bottom: 12px;
 }
 
-#discordpopupcontainer {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    margin: 0;
-    padding: 0;
-    z-index: 3;
-}
-
-.discordpopup {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    padding: 35px;
-    border-radius: 30%;
-    background-color: #5663f1;
-    background-image: url("assets/icons/discord.svg");
-    background-repeat: no-repeat;
-    background-size: 50px;
-    background-position: center;
-    cursor: pointer;
-}
-
-.discordpopup:after {
-    content: attr(description-name);
-    display: block;
-    position: absolute;
-    left: -260px;
-    top: 29px;
-    width: max-content;
-    padding: 8px;
-    padding-top: 2px;
-    padding-bottom: 14px;
-    padding-right: 80px;
-    -webkit-backdrop-filter: brightness(60%) blur(4px);
-    backdrop-filter: brightness(60%) blur(4px);
-    color: #ffffff;
-    border-radius: 8px;
-    z-index: -1;
-    border: 1px solid #ffffff7b;
-}
-
-.discordpopup:before {
-    content: "Don't be afraid of the low membercount. We are new!";
-    display: block;
-    position: absolute;
-    left: -260px;
-    top: 45px;
-    width: max-content;
-    padding: 8px;
-    font-size: xx-small;
-    color: #ffffff;
-    z-index: 0;
-}
-
-.discordpopupX {
-    color: #ffffff;
-    position: relative;
-    top: 2px;
-    left: -18px;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    display: block;
-    -webkit-backdrop-filter: brightness(60%) blur(4px);
-    backdrop-filter: brightness(60%) blur(4px);
-    border: 1px solid #ffffff7b;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 @media screen and (max-width: 700px) {
 
     .excard {
@@ -1116,4 +1011,63 @@ input.buttonUrl {
 }
 
 
+.centeredtopbartext {
+    max-width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-weight: 300;
+    text-align: center;
+    line-height: 110%;
+} 
 
+@media screen and (max-width: 900px) {
+
+    .topbar {
+        height: 120px;
+    }
+
+    .topbar .pagename {
+        height: 60px;
+    }
+
+    .centeredtopbartext {
+        top: calc(75%);
+        max-width: max-content;
+    }
+
+    #contents {
+        margin-top: 104px;
+    }
+
+}
+
+.topinformationcontainer {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    padding: 8px;
+    flex-direction: column;
+}
+
+.topinformationcontainer > div {
+    padding: 5px;
+    margin: 3px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.topinformationcontainer .noborder {
+    border: none;
+}

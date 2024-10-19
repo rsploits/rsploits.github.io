@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--
     <title>RSploits - Roblox Exploits</title>
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -13,8 +12,6 @@
     <meta content="RSploits is the reliable source for working exploits for roblox, trusted by the ROBLOXExploiting subreddit." property="og:description" />
     <meta content="https://rsploits.net" property="og:url" />
     <meta content="#777777" data-react-helmet="true" name="theme-color" />
-    
-    -->
 
     <!-- google stuff -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTP8GVRXHJ"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-PTP8GVRXHJ');</script>
@@ -23,32 +20,15 @@
     <meta name="Description" content="rsploits is a reliable source for working exploits for roblox." />
     <!-- end google stuff -->
 
-    <style>
-        
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 500;
-}
-
-* {
-    margin: 5px;
-}
-    </style>
 </head>
 <body>
-    <!--
     <div class="topbar">
-        <!-- google search is weird. --\>
+        <!-- google search is weird. -->
         <p style="display: none;" content="rsploits is a reliable source for working exploits for roblox, trusted by the r/ROBLOXExploiting subreddit, providing honest ratings of roblox cheats and hacks, and exposing those that are malicious. rsploits.github.io contains a wide variety of cheats, hacks and exploits for the popular game roblox, for windows, android, macos, ios. all of them work in 2024.">
         <div class="pagename">
-            <h2>RSploits.net</h2>
+            <p>RSploits.net</p>
         </div>
+        <div class="centeredtopbartext">Nonprofit and unbiased. Like, actually.</div>
         <a onclick="toggleNav();" class="hamburger">
             ☰ More
             <span class="popuptext" id="hamburgerpopup">Keysystem bypassers, RAT lists, Issues/Suggestions, and more!</span>
@@ -64,28 +44,25 @@ body {
         <div class="container" id="bypassers" style="display: none;"></div>
 
         <div id="exploits">
-            <div class="filterbuttoncontainer">
-                <button onclick="toggleFilterMenu();"></button>
-                <div class="filter-icon-container" id="filter" style="transform: translate(0px, -150px)">
-                    <div onclick="toggleFilter('ex_win', this)" class="filterico icon windows"></div>
-                    <div onclick="toggleFilter('ex_and', this)" class="filterico icon android"></div>
-                    <div onclick="toggleFilter('ex_mac', this)" class="filterico icon macos"></div>
-                    <div onclick="toggleFilter('ex_ios', this)" class="filterico icon ios"></div>
-                    <div onclick="toggleFilter('ex_keyless', this)" class="filterico icon hastext"><p>Keyless</p></div>
-                    <div onclick="toggleFilter('ex_free', this)" class="filterico icon hastext"><p>Free</p></div>
-                    <div onclick="toggleFilter('ex_decomp', this)" class="filterico icon hastext"><p>Decompiler</p></div>
+            <div class="topinformationcontainer">
+                <div>
+                    <p style="font-size: 2em; font-weight: 600;">Hey! <span style="color: crimson; font-weight: 100;">Please take your time to read this.</span> We are back. </p>
+                    <p>Why? Well, why not? I could go on rambling about why and what, but you wouldn't need to know anyways, so just take it as it is. Well, basically, the last time I abandoned this, I kind of more just fleed, but I want to end this in peace. If I ever end this, because I might just sell it off or give it away to someone I trust. Whatever. Though - we have been away for a while, so we haven't caught up on everything, so some information might be out of date. If you notice anything or just want to add something, head over to the issues and suggestions page and tell us.</p>
+                </div>
+                <div class="filterbuttoncontainer noborder">
+                    <button class="filterbutton" onclick="toggleFilterMenu();"></button>
+                    <div class="filter-icon-container" id="filter" style="transform: translate(0px, -80px); opacity: 0%;">
+                        <div onclick="toggleFilter('ex_win', this)" class="filterico icon windows"></div>
+                        <div onclick="toggleFilter('ex_and', this)" class="filterico icon android"></div>
+                        <div onclick="toggleFilter('ex_mac', this)" class="filterico icon macos"></div>
+                        <div onclick="toggleFilter('ex_ios', this)" class="filterico icon ios"></div>
+                        <div onclick="toggleFilter('ex_keyless', this)" class="filterico icon hastext"><p>Keyless</p></div>
+                        <div onclick="toggleFilter('ex_free', this)" class="filterico icon hastext"><p>Free</p></div>
+                        <div onclick="toggleFilter('ex_decomp', this)" class="filterico icon hastext"><p>Decompiler</p></div>
+                    </div>
                 </div>
             </div>
             <div class="container" id="exploitcontainer">
-                <div class="updatedVersionsContainerContainer">
-                    <div class="updatedVersionsContainer">
-                        <p class="updatedVersion">Latest Roblox Windows update: <span id="latestWinVer">UNKNOWN</span>, <wbr>updated on: <span id="latestWinVerDate">UNKNOWN</span></p>
-                        <p class="updatedVersion">Latest Roblox Android update: <span id="latestAndVer">UNKNOWN</span>, <wbr>updated on: <span id="latestAndVerDate">UNKNOWN</span></p>
-                        <p class="updatedVersion">Latest Roblox MacOS update: <span id="latestMacVer">UNKNOWN</span>, <wbr>updated on: <span id="latestMacVerDate">UNKNOWN</span></p>
-                        <p class="updatedVersion">Latest Roblox iOS update: <span id="latestIosVer">UNKNOWN</span>, <wbr>updated on: <span id="latestIosVerDate">UNKNOWN</span></p>
-                        <p class="updatedVersion small">The dates are formatted to your timezone.</p>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -161,33 +138,9 @@ body {
     <div class="bottomBar">
         <p>© 2024 The RSploits Team. All Rights Reserved.</p>
     </div>
-    
-    <div id="discordpopupcontainer">
-        <span class="discordpopupX" onclick="document.getElementById('discordpopupcontainer').style.display = 'none';">X</span>
-        <div id="discordpopup" class="discordpopup" onclick="window.open('https://discord.gg/YcbH8KusyY');"></div>
-    </div>
-    -->
-    <h1>Sorry.</h1>
-    <p>We are shutting down until further notice.</p>
-    <h3>What happened?</h3>
-    <p>Roblox cheating was a hellhole, all communities, both ROBLOXExploiting and robloxhackers, all on one level, that I do not want to be part of anymore. Most people are just dumb, which shows through the whole r/ROBLOXExploiting and r/robloxhackers war, its completely useless, it is two communities with the same goal, but they just cannot work together. Recently, I apparantly got fired from r/ROBLOXExploiting because another staff member feared that a fairly new staff member would ruin the between the two subreddits they established, if I didn't get fired. You could just have restored peace yourself, but thats apparently not possible. Instead, the other staff is still staff, and I'm gone. Along with rsploits.net. What does it matter anyways, you have a replacement for rsploits anyways, a new official website (that is just a weao clone), made just for this community, by the same person who got me fired, and just completely invalidated rsploits from ever being official - as if it never was, not even before they were staff.</p>
-    <h3>What now?</h3>
-    <p>Just use solara at https://getsolara.dev, and once Nihon v3 relases (https://discord.gg/nihon), on the 30th of August, just use that. If it is released when you are reading this, and it sucks, sorry. Nothing I can do about that.</p>
-    <h3>Will you come back?</h3>
-    <p>Unlikely.</p>
-    <h3>Have you made any money or other things from this website?</h3>
-    <p>None. Ever.</p>
-    <h3>What about the discord server? </h3>
-    <p><s>Its still there at https://discord.gg/YcbH8KusyY, but I am not active on it. You can join and chat with other members, but don't expect anything from me. If one day the server is gone, I probably deleted it.</s></p>
-    <p>We have a new server at <a href="discord.gg/kAqGQdrDwC">discord.gg/kAqGQdrDwC</a>, not themed around particularly exploiting, but just general purpose, be that programming, funny things, whatever. We are planning to just work on other projects, and kind of just build a small community, since why not.</p>
-	<h3>Am I allowed to create a fork / copy / continuation of the original rsploits.net?</h3>
-	<p>No. You are not. There have been multiple attempts at this, all of them have been taken down, don't attempt it. I took rsploits down for a reason.</p>
-	<br><br><br><br>
-	<p style="font-size: x-small">© 2024 The (Ex) RSploits Team. All Rights Reserved.</p>
 	
     <script src="index.js"></script>
 
-    <!-- ads? -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9802561197217814" crossorigin="anonymous"></script>
     
 </body>
