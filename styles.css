@@ -1071,3 +1071,21 @@ input.buttonUrl {
 .topinformationcontainer .noborder {
     border: none;
 }
+
+.dishon-mention-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.dishon-mention-container hr {
+    min-width: 50vw;
+}
+
+.dishon-mention-container img {
+    max-height: 800px;
+    max-width: 600px;
+}

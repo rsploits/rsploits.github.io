@@ -22,6 +22,7 @@ function changeTab(name, button) {
     el("credits").style.display = "none";
     el("editor").style.display = "none";
     el("issues").style.display = "none";
+    el("dishonorable-mentions").style.display = "none";
     el(name).style.display = "";
     el("nav_exploits_button").className = "";
     el("nav_viruses_button").className = "";
@@ -30,6 +31,7 @@ function changeTab(name, button) {
     el("nav_credits_button").className = "";
     el("nav_editor_button").className = "";
     el("nav_issues_button").className = "";
+    el("nav_dishonorable_mentions_button").className = "";
     button.className = "active";
 }
 
