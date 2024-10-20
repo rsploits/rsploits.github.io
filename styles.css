@@ -1079,10 +1079,20 @@ input.buttonUrl {
     padding-right: 30px;
     color: #ffffff;
     text-align: center;
+    max-width: 100%;
+}
+
+#dishonorable-mentions {
+    max-width: 100%;
 }
 
 .dishon-mention-container hr {
-    min-width: 50vw;
+    min-width: 40vw;
+}
+
+.dishon-mention-container p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .dishon-mention-container img {
