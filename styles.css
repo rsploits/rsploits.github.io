@@ -1096,7 +1096,7 @@ input.buttonUrl {
 }
 
 .dishon-mention-container img {
-    max-width: 600px;
+    max-width: calc(min(600px, 80vw));
     width: auto;
     height: auto;
     margin-left: auto;
