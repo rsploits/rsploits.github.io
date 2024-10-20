@@ -22,7 +22,7 @@ function changeTab(name, button) {
     el("credits").style.display = "none";
     el("editor").style.display = "none";
     el("issues").style.display = "none";
-    el(name).style.display = "flex";
+    el(name).style.display = "";
     el("nav_exploits_button").className = "";
     el("nav_viruses_button").className = "";
     el("nav_bypassers_button").className = "";
@@ -812,7 +812,7 @@ fetch(SCIENCE_URL, {
     method: "POST"
 })
 
-var importContainer = el("importContainer"); // tried compacting these two like most things in this code - man, javascript is WEIRD.
+var importContainer = el("importContainer"); 
 importContainer.addEventListener("click", e => {
     if (e.target != importContainer) {
         return;
