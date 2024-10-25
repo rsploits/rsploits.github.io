@@ -801,7 +801,7 @@ function createAllAdblockerCardsFromJson(data) {
 }
 
 [
-    [EXPLOIT_DATA_URL, createAllCardsFromJson],
+//  [EXPLOIT_DATA_URL, createAllCardsFromJson],
     [MALWARE_DATA_URL, createAllMalwareCardsFromJson],
     [BYPASSERS_DATA_URL, createAllBypasserCardsFromJson],
     [ADBLOCKERS_DATA_URL, createAllAdblockerCardsFromJson],
